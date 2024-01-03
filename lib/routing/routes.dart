@@ -6,6 +6,9 @@ const overviewPageRoute = "/overview";
 const quizsPageDisplayName = "Quizs";
 const quizsPageRoute = "/quizs";
 
+const postPageDisplayName = "Posts";
+const postPageRoute = "/posts";
+
 const clientsPageDisplayName = "Clients";
 const clientsPageRoute = "/clients";
 
@@ -24,6 +27,7 @@ class MenuItem {
 List<MenuItem> sideMenuItemRoutes = [
  MenuItem(overviewPageDisplayName, overviewPageRoute),
  MenuItem(quizsPageDisplayName, quizsPageRoute),
+MenuItem(postPageDisplayName, postPageRoute),
  MenuItem(clientsPageDisplayName, clientsPageRoute),
  MenuItem(authenticationPageDisplayName, authenticationPageRoute),
 ];

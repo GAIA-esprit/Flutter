@@ -48,6 +48,12 @@ class _QuizTableState extends State<QuizTable> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          ElevatedButton(
+            onPressed: () {
+              // Implement the refresh logic here
+            },
+            child: Icon(Icons.refresh),
+          ),
           Row(
             children: [
               SizedBox(
@@ -137,84 +143,80 @@ class _QuizTableState extends State<QuizTable> {
         ? (startIndex + _rowsPerPage)
         : quizzes.length;
 
-    return quizzes
-        .getRange(startIndex, endIndex)
-        .map<DataRow>((quiz) {
-          final index = widget.quizzes.indexOf(quiz);
-          return DataRow(
-            cells: [
-              DataCell(
-                CustomText(
-                  text: "${index + 1 + _currentPage * _rowsPerPage}",
-                  weight: FontWeight.bold,
-                ),
-              ),
-              DataCell(
-                CustomText(
-                  text: quiz.question,
-                ),
-              ),
-              DataCell(
-                CustomText(
-                  text: quiz.category,
-                ),
-              ),
-              DataCell(
-                CustomText(
-                  text: quiz.type,
-                ),
-              ),
-              DataCell(
-                CustomText(
-                  text: quiz.difficulty,
-                  weight: FontWeight.bold,
-                  color: _getColorForDifficulty(quiz.difficulty),
-                ),
-              ),
-              DataCell(
-                PopupMenuButton(
-                  itemBuilder: (BuildContext context) {
-                    return [
-                      PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.visibility),
-                          title: CustomText(
-                            text: 'Show Details',
-                            color: Colors.black,
-                          ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            _showQuizDetailsDialog(context, quiz);
-                          },
-                        ),
+    return quizzes.getRange(startIndex, endIndex).map<DataRow>((quiz) {
+      final index = widget.quizzes.indexOf(quiz);
+      return DataRow(
+        cells: [
+          DataCell(
+            CustomText(
+              text: "${index + 1 + _currentPage * _rowsPerPage}",
+              weight: FontWeight.bold,
+            ),
+          ),
+          DataCell(
+            CustomText(
+              text: quiz.question,
+            ),
+          ),
+          DataCell(
+            CustomText(
+              text: quiz.category,
+            ),
+          ),
+          DataCell(
+            CustomText(
+              text: quiz.type,
+            ),
+          ),
+          DataCell(
+            CustomText(
+              text: quiz.difficulty,
+              weight: FontWeight.bold,
+              color: _getColorForDifficulty(quiz.difficulty),
+            ),
+          ),
+          DataCell(
+            PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: Icon(Icons.visibility),
+                      title: CustomText(
+                        text: 'Show Details',
+                        color: Colors.black,
                       ),
-                      PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.hide_source),
-                          title: CustomText(
-                            text: 'Hide',
-                            color: Colors.red,
-                          ),
-                          onTap: () {
-                            Navigator.pop(context);
-                            _showDeleteConfirmation(context, quiz);
-                          },
-                        ),
+                      onTap: () {
+                        Navigator.pop(context);
+                        _showQuizDetailsDialog(context, quiz);
+                      },
+                    ),
+                  ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: Icon(Icons.hide_source),
+                      title: CustomText(
+                        text: 'Hide',
+                        color: Colors.red,
                       ),
-                    ];
-                  },
-                  icon: Icon(Icons.more_vert),
-                ),
-              ),
-            ],
-          );
-        })
-        .toList();
+                      onTap: () {
+                        Navigator.pop(context);
+                        _showDeleteConfirmation(context, quiz);
+                      },
+                    ),
+                  ),
+                ];
+              },
+              icon: Icon(Icons.more_vert),
+            ),
+          ),
+        ],
+      );
+    }).toList();
   }
 
   Widget _buildPagination() {
-    final int totalPages =
-        ((widget.quizzes.length - 1) / _rowsPerPage).ceil();
+    final int totalPages = ((widget.quizzes.length - 1) / _rowsPerPage).ceil();
     return Container(
       alignment: Alignment.center,
       child: Row(
@@ -328,27 +330,26 @@ class _QuizTableState extends State<QuizTable> {
   }
 
   void _deleteQuiz(BuildContext context, Quiz quiz) async {
-  try {
-    String quizId = quiz.id ?? '';
-    await ApiService.hideQuiz(quizId); // Call hideQuiz method
+    try {
+      String quizId = quiz.id ?? '';
+      await ApiService.hideQuiz(quizId); // Call hideQuiz method
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: CustomText(text: 'Quiz hidden successfully'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  } catch (error) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: CustomText(text: 'Failed to hide quiz: $error'),
-        duration: Duration(seconds: 2),
-      ),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: CustomText(text: 'Quiz hidden successfully'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: CustomText(text: 'Failed to hide quiz: $error'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+    Navigator.pop(context);
   }
-  Navigator.pop(context);
-}
-
 
   Color _getColorForDifficulty(String difficulty) {
     switch (difficulty) {

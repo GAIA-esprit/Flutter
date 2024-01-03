@@ -24,13 +24,21 @@ class QuizDetailPage extends StatefulWidget {
 class _QuizDetailPageState extends State<QuizDetailPage> {
   late Future<List<Quiz>> quizzes1;
   late Future<List<Quiz>> quizzes2;
-  int activeTableIndex = 1; // 1 for the first table, 2 for the second table
+  int activeTableIndex = 1;
 
   @override
   void initState() {
     super.initState();
     quizzes1 = ApiService.fetchQuizzes();
     quizzes2 = ApiService.fetchHiddenQuizzes(); // Fetch quizzes for the second table
+  }
+
+  void refreshTable() {
+    setState(() {
+      // Re-fetch the quizzes
+      quizzes1 = ApiService.fetchQuizzes();
+      quizzes2 = ApiService.fetchHiddenQuizzes();
+    });
   }
 
   @override
@@ -56,11 +64,23 @@ class _QuizDetailPageState extends State<QuizDetailPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              OverviewCardsLargeScreen(),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    activeTableIndex = (activeTableIndex == 1) ? 2 : 1;
+                  });
+                },
+                child: Text(
+                  'Show ${activeTableIndex == 1 ? 'Hidden Quizzes' : 'All Quizzes'}',
+                ),
+              ),
               SizedBox(height: 16),
               Expanded(
                 child: ListView(
                   children: [
+                    OverviewCardsLargeScreen(),
+                    DifficultyCardsLargeScreen(),
                     FutureBuilder<List<Quiz>>(
                       future: activeTableIndex == 1 ? quizzes1 : quizzes2,
                       builder: (context, snapshot) {
@@ -87,16 +107,6 @@ class _QuizDetailPageState extends State<QuizDetailPage> {
                                 ),
                               ),
                               SizedBox(height: 16),
-                              ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    activeTableIndex =
-                                        (activeTableIndex == 1) ? 2 : 1;
-                                  });
-                                },
-                                child: Text(
-                                    'Show ${activeTableIndex == 1 ? 'Hidden Quizzes' : 'All Quizzes'}'),
-                              ),
                             ],
                           );
                         }
@@ -105,7 +115,6 @@ class _QuizDetailPageState extends State<QuizDetailPage> {
                   ],
                 ),
               ),
-              //DifficultyCardsLargeScreen(),
             ],
           ),
         ),
@@ -118,8 +127,7 @@ class _QuizDetailPageState extends State<QuizDetailPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content:
-              AddQuizForm(), // Replace QuizForm() with the actual instance of your form widget
+          content: AddQuizForm(),
         );
       },
     );

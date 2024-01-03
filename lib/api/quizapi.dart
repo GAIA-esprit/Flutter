@@ -6,8 +6,7 @@ class ApiService {
   static const String apiUrl = 'http://127.0.0.1:3000/api/quiz';
 
   static Future<List<Quiz>> fetchQuizzes() async {
-    final response = await http.get(Uri.parse(apiUrl));
-
+    final response = await http.get(Uri.parse('$apiUrl/quizzes/available'));
     if (response.statusCode == 200) {
       final List<dynamic> quizJsonList = jsonDecode(response.body);
       return quizJsonList.map((quizJson) => Quiz.fromJson(quizJson)).toList();

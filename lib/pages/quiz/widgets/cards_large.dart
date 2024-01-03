@@ -38,7 +38,7 @@ class _OverviewCardsLargeScreenState extends State<OverviewCardsLargeScreen> {
       children: [
         InfoCard(
           title: "Available Quizzes",
-          value: (quizzesCount-hiddenquizzesCount).toString(),
+          value: quizzesCount.toString(),
           onTap: () {},
           topColor: Colors.orange,
         ),
@@ -47,7 +47,7 @@ class _OverviewCardsLargeScreenState extends State<OverviewCardsLargeScreen> {
         ),
         InfoCard(
           title: "Total Quizzes",
-          value: quizzesCount.toString(),
+          value: (quizzesCount+hiddenquizzesCount).toString(),
           topColor: Colors.lightGreen,
           onTap: () {},
         ),

@@ -25,6 +25,8 @@ class MenuController extends GetxController {
     switch (itemName) {
       case overviewPageDisplayName:
         return _customIcon(Icons.trending_up, itemName);
+        case postPageDisplayName:
+        return _customIcon(Icons.post_add, itemName);
       case quizsPageDisplayName:
         return _customIcon(Icons.gamepad, itemName);
       case clientsPageDisplayName:
