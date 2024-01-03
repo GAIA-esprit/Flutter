@@ -18,6 +18,15 @@ class _QuizTableState extends State<QuizTable> {
   String selectedDifficulty = 'All';
   final ApiService quizApi = ApiService();
   String searchQuery = '';
+  late int _rowsPerPage;
+  late int _currentPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _rowsPerPage = 10; // Set the initial number of rows per page
+    _currentPage = 1; // Set the initial current page
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +93,7 @@ class _QuizTableState extends State<QuizTable> {
             ],
           ),
           SizedBox(
-            height: (56 * filteredQuizzes.length) + 40,
+            height: (56 * _rowsPerPage) + 40,
             child: DataTable(
               columnSpacing: 12,
               dataRowHeight: 56,
@@ -110,79 +119,127 @@ class _QuizTableState extends State<QuizTable> {
                   label: Text('Actions'),
                 ),
               ],
-              rows: filteredQuizzes.asMap().entries.map<DataRow>((entry) {
-                final index = entry.key;
-                final quiz = entry.value;
-
-                return DataRow(
-                  cells: [
-                    DataCell(
-                      CustomText(
-                        text: "${index + 1}",
-                        weight: FontWeight.bold,
-                      ),
-                    ),
-                    DataCell(
-                      CustomText(
-                        text: quiz.question,
-                      ),
-                    ),
-                    DataCell(
-                      CustomText(
-                        text: quiz.category,
-                      ),
-                    ),
-                    DataCell(
-                      CustomText(
-                        text: quiz.type,
-                      ),
-                    ),
-                    DataCell(
-                      CustomText(
-                        text: quiz.difficulty,
-                        weight: FontWeight.bold,
-                        color: _getColorForDifficulty(quiz.difficulty),
-                      ),
-                    ),
-                    DataCell(
-                      PopupMenuButton(
-                        itemBuilder: (BuildContext context) {
-                          return [
-                            PopupMenuItem(
-                              child: ListTile(
-                                leading: Icon(Icons.visibility),
-                                title: CustomText(
-                                  text: 'Show Details',
-                                  color: Colors.black,
-                                ),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  _showQuizDetailsDialog(context, quiz);
-                                },
-                              ),
-                            ),
-                            PopupMenuItem(
-                              child: ListTile(
-                                leading: Icon(Icons.delete),
-                                title: CustomText(
-                                  text: 'Delete',
-                                  color: Colors.red,
-                                ),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  _showDeleteConfirmation(context, quiz);
-                                },
-                              ),
-                            ),
-                          ];
-                        },
-                        icon: Icon(Icons.more_vert),
-                      ),
-                    ),
-                  ],
-                );
-              }).toList(),
+              rows: _generateTableRows(filteredQuizzes),
             ),
+          ),
+          SizedBox(
+            height: 60, // Adjust the height as needed
+            child: _buildPagination(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<DataRow> _generateTableRows(List<Quiz> quizzes) {
+    final int startIndex = (_currentPage - 1) * _rowsPerPage;
+    final int endIndex = (startIndex + _rowsPerPage) < quizzes.length
+        ? (startIndex + _rowsPerPage)
+        : quizzes.length;
+
+    return quizzes
+        .getRange(startIndex, endIndex)
+        .map<DataRow>((quiz) {
+          final index = widget.quizzes.indexOf(quiz);
+          return DataRow(
+            cells: [
+              DataCell(
+                CustomText(
+                  text: "${index + 1 + _currentPage * _rowsPerPage}",
+                  weight: FontWeight.bold,
+                ),
+              ),
+              DataCell(
+                CustomText(
+                  text: quiz.question,
+                ),
+              ),
+              DataCell(
+                CustomText(
+                  text: quiz.category,
+                ),
+              ),
+              DataCell(
+                CustomText(
+                  text: quiz.type,
+                ),
+              ),
+              DataCell(
+                CustomText(
+                  text: quiz.difficulty,
+                  weight: FontWeight.bold,
+                  color: _getColorForDifficulty(quiz.difficulty),
+                ),
+              ),
+              DataCell(
+                PopupMenuButton(
+                  itemBuilder: (BuildContext context) {
+                    return [
+                      PopupMenuItem(
+                        child: ListTile(
+                          leading: Icon(Icons.visibility),
+                          title: CustomText(
+                            text: 'Show Details',
+                            color: Colors.black,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            _showQuizDetailsDialog(context, quiz);
+                          },
+                        ),
+                      ),
+                      PopupMenuItem(
+                        child: ListTile(
+                          leading: Icon(Icons.hide_source),
+                          title: CustomText(
+                            text: 'Hide',
+                            color: Colors.red,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            _showDeleteConfirmation(context, quiz);
+                          },
+                        ),
+                      ),
+                    ];
+                  },
+                  icon: Icon(Icons.more_vert),
+                ),
+              ),
+            ],
+          );
+        })
+        .toList();
+  }
+
+  Widget _buildPagination() {
+    final int totalPages =
+        ((widget.quizzes.length - 1) / _rowsPerPage).ceil();
+    return Container(
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            icon: Icon(Icons.chevron_left),
+            onPressed: () {
+              setState(() {
+                if (_currentPage > 1) {
+                  _currentPage--;
+                }
+              });
+            },
+          ),
+          CustomText(text: 'Page $_currentPage of $totalPages'),
+          IconButton(
+            icon: Icon(Icons.chevron_right),
+            onPressed: () {
+              setState(() {
+                if ((_currentPage * _rowsPerPage) < widget.quizzes.length) {
+                  _currentPage++;
+                }
+              });
+            },
           ),
         ],
       ),
@@ -260,7 +317,7 @@ class _QuizTableState extends State<QuizTable> {
                 _deleteQuiz(context, quiz);
               },
               child: CustomText(
-                text: 'Delete',
+                text: 'Hide',
                 color: Colors.red,
               ),
             ),
@@ -271,23 +328,27 @@ class _QuizTableState extends State<QuizTable> {
   }
 
   void _deleteQuiz(BuildContext context, Quiz quiz) async {
-    try {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: CustomText(text: 'Quiz hidden successfully'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: CustomText(text: 'Failed to hide quiz: $error'),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    }
-    Navigator.pop(context);
+  try {
+    String quizId = quiz.id ?? '';
+    await ApiService.hideQuiz(quizId); // Call hideQuiz method
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: CustomText(text: 'Quiz hidden successfully'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  } catch (error) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: CustomText(text: 'Failed to hide quiz: $error'),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
+  Navigator.pop(context);
+}
+
 
   Color _getColorForDifficulty(String difficulty) {
     switch (difficulty) {

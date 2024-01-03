@@ -16,6 +16,17 @@ class ApiService {
     }
   }
 
+  static Future<List<Quiz>> fetchQuizzesByDifficulty(String difficulty) async {
+    final response = await http.get(Uri.parse('$apiUrl/$difficulty'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> quizJsonList = jsonDecode(response.body);
+      return quizJsonList.map((quizJson) => Quiz.fromJson(quizJson)).toList();
+    } else {
+      throw Exception('Failed to load quizzes');
+    }
+  }
+
   static Future<List<Quiz>> fetchHiddenQuizzes() async {
     final response = await http.get(Uri.parse('$apiUrl/quizzes/hidden'));
 

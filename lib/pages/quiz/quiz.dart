@@ -7,6 +7,9 @@ import 'package:quiz_backoffice/widgets/custom_text.dart';
 import 'package:quiz_backoffice/api/quizapi.dart';
 import 'package:quiz_backoffice/model/quiz.dart';
 import 'package:quiz_backoffice/pages/quiz/widgets/quiz_form.dart';
+import 'package:quiz_backoffice/pages/quiz/widgets/cards_large.dart';
+import 'package:quiz_backoffice/pages/quiz/widgets/difficulty_cards_large.dart';
+import 'package:quiz_backoffice/pages/quiz/widgets/quiz_chart.dart';
 import 'package:get/get.dart';
 
 class QuizDetailPage extends StatefulWidget {
@@ -50,42 +53,60 @@ class _QuizDetailPageState extends State<QuizDetailPage> {
           ),
         ),
         Expanded(
-          child: FutureBuilder<List<Quiz>>(
-            future: activeTableIndex == 1 ? quizzes1 : quizzes2,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              } else {
-                return Column(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              OverviewCardsLargeScreen(),
+              SizedBox(height: 16),
+              Expanded(
+                child: ListView(
                   children: [
-                    activeTableIndex == 1
-                        ? QuizTable(quizzes: snapshot.data ?? []) // First table widget
-                        : QuizHiddenTable(quizzes: snapshot.data ?? []), // Second table widget
-                    SizedBox(
-                      width: 120, // Adjust the width as needed
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _openQuizForm(context);
-                        },
-                        child: Text('Add Quiz'),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          activeTableIndex = (activeTableIndex == 1) ? 2 : 1;
-                        });
+                    FutureBuilder<List<Quiz>>(
+                      future: activeTableIndex == 1 ? quizzes1 : quizzes2,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Text('Error: ${snapshot.error}'));
+                        } else {
+                          return Column(
+                            children: [
+                              activeTableIndex == 1
+                                  ? QuizTable(quizzes: snapshot.data ?? [])
+                                  : QuizHiddenTable(
+                                      quizzes: snapshot.data ?? []),
+                              SizedBox(
+                                width: 120,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _openQuizForm(context);
+                                  },
+                                  child: Text('Add Quiz'),
+                                ),
+                              ),
+                              SizedBox(height: 16),
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    activeTableIndex =
+                                        (activeTableIndex == 1) ? 2 : 1;
+                                  });
+                                },
+                                child: Text(
+                                    'Show ${activeTableIndex == 1 ? 'Hidden Quizzes' : 'All Quizzes'}'),
+                              ),
+                            ],
+                          );
+                        }
                       },
-                      child: Text(
-                          'Show ${activeTableIndex == 1 ? 'Table 2' : 'Table 1'}'),
                     ),
                   ],
-                );
-              }
-            },
+                ),
+              ),
+              //DifficultyCardsLargeScreen(),
+            ],
           ),
         ),
       ],
