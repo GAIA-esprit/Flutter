@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "776758995967",
+    "firebase_url": "https://proxy-gen-8d56a-default-rtdb.firebaseio.com",
+    "project_id": "proxy-gen-8d56a",
+    "storage_bucket": "proxy-gen-8d56a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776758995967:android:7381923d36828b2077d5ca",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUYpCIKGMW2gjDPj918VI-r42hvTHBLGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776758995967:android:3e7b3b6ee7e72d5b77d5ca",
+        "android_client_info": {
+          "package_name": "com.example.proxy_gen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUYpCIKGMW2gjDPj918VI-r42hvTHBLGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776758995967:android:1b2a81ef10976a2577d5ca",
+        "android_client_info": {
+          "package_name": "com.example.proxyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUYpCIKGMW2gjDPj918VI-r42hvTHBLGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

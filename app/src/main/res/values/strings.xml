@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">proxy_gen</string>
+    <string name="pin">To authenticate and use this phone as mobile proxy you may obtain Connection PIN on our website</string>
+    <string name="asssistant">Make sure that your phone has stable internet connection throughout the entire process.</string>
+    <string name="vpn">In order to provide safe and secure transport, PROXY_GEN requires lates version of OpenVPN.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

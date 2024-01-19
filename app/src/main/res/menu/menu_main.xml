@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_item1"
+        android:title="Setup Assistant" />
+    <item
+        android:id="@+id/action_item2"
+        android:title="Setup p0f..." />
+    <item
+        android:id="@+id/action_item3"
+        android:title="Submit debug info" />
+    <item
+        android:id="@+id/action_item4"
+        android:title="Request ROOT" />
+    <item
+        android:id="@+id/action_item5"
+        android:title="Change IP w/o ROOT" />
+    <item
+        android:id="@+id/action_item6"
+        android:title="Settings" />
+    <item
+        android:id="@+id/action_item7"
+        android:title="Logout" />
+</menu>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <!-- Your main content goes here -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_toolbar"
+        android:padding="16dp"
+        >
+
+        <!-- Row 1 -->
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Proxy"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/urbanist_medium"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Off/on"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/urbanist_medium"/>
+
+                <TextView
+                    android:id="@+id/proxyStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Proxy is disabled"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+
+            </LinearLayout>
+
+            <ToggleButton
+                android:id="@+id/proxyToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="OFF"
+                android:textOn="ON"
+                android:checked="false"/>
+        </TableRow>
+
+        <!-- Row 2 -->
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Tariff"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/urbanist_medium"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BigDaddy pro active till"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/urbanist_medium"/>
+
+                <TextView
+                    android:id="@+id/activeDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Proxy is disabled"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/refreshTariff"
+                android:layout_width="25sp"
+                android:layout_height="25sp"
+                android:src="@drawable/reset"
+                android:onClick="resetButtonClick"
+                android:contentDescription="Reset Button"
+                android:scaleType="fitCenter"
+                android:background="@color/white"
+                android:layout_marginTop="20dp"/>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Status"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/urbanist_medium"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Inactive"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/urbanist_medium"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Network: WIFI/ 102.159.29.50"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tn:N/A"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fw:Stopped"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Info"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/urbanist_medium"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="******email***********"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/urbanist_medium"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Connection: kaG8tRf6nw"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:id="@+id/emailName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Connection brakajgames"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="proxy gen 2023.1 build 1 (develop)"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Android 11 on linux"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1.14"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone brand"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Root: No"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/urbanist_medium"/>
+            </LinearLayout>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Settings"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/urbanist_medium"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fingerprint: Dosen't work without root"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IProtation: No"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reboot schedule: Dosen't work without root"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/urbanist_medium"/>
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>

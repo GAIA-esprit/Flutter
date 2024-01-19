@@ -1,0 +1,23 @@
+<resources>
+    <array name="dns_client">
+        <item>NETTY_DNS</item>
+        <item>MINI_DNS</item>
+    </array>
+    <array name="network_strategy">
+        <item>MODERN</item>
+        <item>LEGACY</item>
+        <item>HYBRID</item>
+    </array>
+    <array name="validity_timeout">
+        <item>30 sec</item>
+        <item>1 min</item>
+        <item>2 min</item>
+        <item>5 min</item>
+    </array>
+    <array name="refresh_timeout">
+        <item>15 sec</item>
+        <item>30 sec</item>
+        <item>1 min</item>
+        <item>2 min</item>
+    </array>
+</resources>

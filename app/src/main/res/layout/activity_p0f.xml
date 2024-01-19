@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".P0fActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="50dp"
+        tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/root_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status :  ROOT REQUIRED"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/urbanist_medium"
+        android:paddingTop="100dp"
+        android:paddingLeft="100dp"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/p0f_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fingerprints requires ROOT and is not supported on your device"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/urbanist_medium"
+        android:paddingTop="25dp"
+        tools:ignore="MissingConstraints"
+        android:paddingBottom="50sp"
+        />
+        <Button
+            android:id="@+id/buttonNavigate"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="160dp"
+            android:text="Install fingerprint Service" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

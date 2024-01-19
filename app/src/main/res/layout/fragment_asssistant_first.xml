@@ -1,0 +1,72 @@
+<!-- res/layout/fragment_first.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Setup Assistant"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"
+            android:paddingTop="50dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Here you can setup network transport for Proxy Gen app."
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"
+            android:paddingTop="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Setup Assistant"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/asssistant"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please follow the instructions on the screen"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap START to start setup"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/urbanist_medium"
+            android:paddingTop="20dp"/>
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/buttonNavigate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="160dp"/>
+
+</RelativeLayout>

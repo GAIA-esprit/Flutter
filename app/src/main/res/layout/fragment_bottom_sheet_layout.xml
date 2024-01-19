@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingLeft="90dp"
+        android:paddingRight="90dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/tvBottomSheetTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Install Open VPN"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/urbanist_bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Please click on the link below and install 'OpenVPN for Android manually."
+            android:textSize="18sp"
+            android:fontFamily="@font/urbanist_medium"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="After this, return to this screen and tap CONTINUE."
+            android:textSize="18sp"
+            android:fontFamily="@font/urbanist_medium"/>
+
+        <TextView
+            android:id="@+id/textViewWithLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visit our website: https://iproxy.online/ovpnandroidapp"
+            android:autoLink="web" />
+
+    </LinearLayout>
+
+</RelativeLayout>

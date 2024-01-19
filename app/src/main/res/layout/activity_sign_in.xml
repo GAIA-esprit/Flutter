@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="425dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/genproxy"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/urbanistText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/urbanist_bold"
+        android:text="SIGN IN"
+        android:textColor="@android:color/black"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/mailButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/mailButton"
+        android:backgroundTint="@color/purple"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Use Email"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/urbanistText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pinButton"/>
+
+    <Button
+        android:id="@+id/pinButton"
+        android:backgroundTint="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Use PIN"
+        app:layout_constraintTop_toBottomOf="@+id/urbanistText"
+        app:layout_constraintStart_toEndOf="@+id/mailButton"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/indicatorLine"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/pink"
+        app:layout_constraintTop_toBottomOf="@+id/mailButton"
+        app:layout_constraintStart_toStartOf="@+id/mailButton"/>
+    <LinearLayout
+        android:id="@+id/form1Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/imageView"
+        android:gravity="center"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/indicatorLine">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="Email"
+            android:background="@color/white"
+            android:paddingBottom="20dp">
+
+            <EditText
+                android:background="@android:color/transparent"
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/urbanist_medium"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:hint="Password"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:background="@android:color/transparent"
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_pin"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Pin"
+            android:background="@color/white"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editTextPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:background="@color/white"/>
+
+            <TextView
+                android:id="@+id/pinText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editTextPin"
+                android:layout_marginTop="18dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="@string/pin"
+                android:textSize="18sp"
+                android:fontFamily="@font/urbanist_medium"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="100sp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/form1Layout">
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="LOG IN"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form1Layout" />
+
+        <TextView
+        android:id="@+id/website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:text="website"
+        android:textColorLink="@color/black"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/urbanist_medium"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"/>
+
+    <TextView
+        android:id="@+id/terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autoLink="web"
+        android:textColorLink="@color/black"
+        android:linksClickable="true"
+        android:fontFamily="@font/urbanist_medium"
+        android:gravity="center"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/website"
+         />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/versionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="V 2023.12 build 1"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/urbanist_thin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        tools:ignore="MissingConstraints"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
